@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { log } from 'console';
 import { AlertService } from '../../../shared/alert/alert.service';
+import { LoaderService } from '../../../services/loader.service';
 
 @Component({
   selector: 'app-login',
@@ -23,10 +24,19 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthenticationService,
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private loaderService: LoaderService
   ) { }
 
   ngOnInit(): void {
+
+    this.loaderService.show(); // Show the loader when component loads
+    // Simulate data loading with a timeout
+    setTimeout(() => {
+      this.loaderService.hide(); // Hide the loader when loading completes
+    }, 2000);
+
+
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(5)]]

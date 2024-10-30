@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from '../model/employeeModel';
+import { environment, environment2 } from './environments';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class EmployeesService {
 
   constructor( private httpClient: HttpClient ) { }
 
-  private baseURL = "http://localhost:8085/api/v1/employees";
+  private baseURL: string = environment2.baseUrl;
 
   private getAuthHeaders(): HttpHeaders{
     const token = localStorage.getItem('authToken');

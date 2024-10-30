@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { Employee } from '../model/employeeModel';
 import { Router } from '@angular/router';
+import { environment } from './environments';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class AuthenticationService {
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
-  private baseURL = "http://localhost:8085";
+  private baseURL: string = environment.baseUrl;
 
   private isAuthenticated = false;
 
@@ -32,7 +33,6 @@ export class AuthenticationService {
   login(loginRequest: any): Observable<any> {
     return this.httpClient.post(`${this.baseURL}/login`, loginRequest,).pipe(
       tap((response: any) => {
-        // Store the token in localStorage
         localStorage.setItem('authToken', response.token);
         this.isAuthenticated = true;
         return true;
@@ -55,8 +55,4 @@ export class AuthenticationService {
   getUserDetails() {
     return this.httpClient.get<Employee>(`${this.baseURL}/me`, { headers: this.getAuthHeaders() })
   }
-
-
-
-
 }

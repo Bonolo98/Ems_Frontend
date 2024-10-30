@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
+        if (error.status === 401 || 402 || 403 ) {
           console.log('401 error intercepted, calling logout...'); // Debug log
 
           // Clear the token and redirect to login

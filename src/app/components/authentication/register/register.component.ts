@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { Router, RouterLink } from '@angular/router';
+import { LoaderService } from '../../../services/loader.service';
 
 @Component({
   selector: 'app-register',
@@ -17,10 +18,18 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private loaderService: LoaderService
   ) { }
 
   ngOnInit():void {
+
+    this.loaderService.show();
+    setTimeout(() => {
+      this.loaderService.hide();
+    }, 2000);
+
+
     this.registerForm = this.fb.group({
       username: ['', [Validators.required]],
       firstname: ['', [Validators.required]],

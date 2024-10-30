@@ -5,6 +5,7 @@ import { EmployeesService } from '../../services/employees.service';
 import { CommonModule, NgClass, NgFor } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,9 +24,14 @@ export class DashboardComponent {
   totalEmployees!: number;
 
   constructor(private employeeService: EmployeesService,
-    private router: Router) { }
+    private router: Router, private loaderService: LoaderService) { }
 
   ngOnInit(): void {
+    this.loaderService.show();
+    setTimeout(() => {
+      this.loaderService.hide();
+    }, 2000);
+    
     this.getAllEmployees();
   }
 

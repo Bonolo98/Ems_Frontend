@@ -55,7 +55,7 @@ goToEmployees(){
 
 onSubmit() {
   this.addEmployee();
-  this.router.navigate(['/dashboard']);
+  this.router.navigate(['/dashboard']).then(() => {window.location.reload});
 }
 
 successAlert(){
