@@ -54,33 +54,75 @@ export class AddEmployeeComponent {
     this.addForm = this.formbuilder.group({
       firstname: ['', [Validators.required, Validators.minLength(5)]],
       lastname: ['', [Validators.required, Validators.minLength(5)]],
+      department: ['', [Validators.required, Validators.minLength(2)]],
       employeeNumber: ['', [Validators.required, Validators.minLength(1)]],
       email: [''],
       contacts: ['', [Validators.required, Validators.minLength(10)]],
     });
   }
 
+  // public addEmployee() {
+  //   console.log("Before DI")
+  //   this.employeeService.addEmployee(this.employee).subscribe((data) => {
+  //     data = this.employee;
+  //     console.log(data)
+  //     this.successAlert();
+  //   });
+  // }
+
   public addEmployee() {
-    console.log("Before DI")
-    this.employeeService.addEmployee(this.employee).subscribe((data) => {
-      data = this.employee;
-      console.log(data)
-      this.successAlert();
-    });
+    const formValues = this.addForm.value; // Get form values
+    const newEmployee: Employee = {
+      id: formValues.id,
+      firstname: formValues.firstname,
+      lastname: formValues.lastname,
+      department: formValues.department,
+      employeeNumber: formValues.employeeNumber,
+      email: formValues.email,
+      contacts: formValues.contacts,
+      // adminid: formValues.adminid,
+    };
+
+    console.log(newEmployee, "Before:");
+
+    this.employeeService.addEmployee(newEmployee).subscribe(
+      (data) => {
+        data = newEmployee;
+        console.log('Employee added successfully:', data);
+        this.successAlert();
+      },
+      // (error) => {
+      //   console.error('Error adding employee:', error);
+      //   this.errorAlert();
+      // }
+    );
   }
 
   goToEmployees() {
     this.router.navigate(['/dashboard']);
   }
 
+  // onSubmit() {
+  //   if (this.addForm.valid === null) {
+  //     this.errorAlert();
+  //   } else {
+  //     this.addEmployee();
+  //     this.router.navigate(['/dashboard']).then(() => {
+  //       window.location.reload;
+  //     });
+  //   }
+  // }
+
   onSubmit() {
-    if (this.addForm.valid === null) {
+    if (this.addForm.valid) {
+      this.addEmployee(); // Call the updated method
+      // this.router.navigate(['/dashboard']).then(() => {
+      //   window.location.reload();
+      // });
+    } 
+    
+    else {
       this.errorAlert();
-    } else {
-      this.addEmployee();
-      this.router.navigate(['/dashboard']).then(() => {
-        window.location.reload;
-      });
     }
   }
 

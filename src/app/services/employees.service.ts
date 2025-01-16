@@ -22,8 +22,9 @@ export class EmployeesService {
     return this.httpClient.get<Employee[]>(`${this.baseURL}/`, {headers: this.getAuthHeaders()});
   }
 
-  addEmployee(employee: Employee): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}/add`, employee, {headers: this.getAuthHeaders()});
+  addEmployee(newEmployee: Employee): Observable<Object>{
+    console.log(newEmployee, "Emp Data")
+    return this.httpClient.post(`${this.baseURL}/add`, newEmployee, {headers: this.getAuthHeaders()});
   }
 
   getEmployeeById(id: number): Observable<Employee>{

@@ -6,9 +6,11 @@ export class Employee {
     department: string;
     email: string;
     contacts: number ;
-    adminid: number;
+    // adminid: number;
   
-    constructor(id: number = 0, firstname: string = '', lastname: string = '', employeeNumber: number = 0, department: string = '', email: string = '', contacts: number = 0, adminid: number = 0) {
+    constructor(id: number = 0, firstname: string = '', lastname: string = '', employeeNumber: number = 0,
+       department: string = '', 
+       email: string = '', contacts: number = 0, adminid: number = 0) {
       this.id = id;
       this.firstname = firstname;
       this.lastname = lastname;
@@ -16,6 +18,6 @@ export class Employee {
       this.department = department;
       this.email = email;
       this.contacts = contacts;
-      this.adminid = adminid;
+      // this.adminid = adminid;
     }
   }
