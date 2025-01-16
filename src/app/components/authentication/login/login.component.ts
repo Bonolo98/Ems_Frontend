@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthenticationService } from '../../../services/authentication.service';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { log } from 'console';
 import { AlertService } from '../../../shared/alert/alert.service';
 import { LoaderService } from '../../../services/loader.service';
 
@@ -49,8 +48,8 @@ export class LoginComponent {
       const login = this.loginForm.value;
 
       this.authService.login(login).subscribe({
-        next: (response) => {
-          console.log(response);
+        next: (data) => {
+          console.log('details', data)
           this.router.navigate(['/dashboard']);
         },
 

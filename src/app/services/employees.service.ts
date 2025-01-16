@@ -14,7 +14,7 @@ export class EmployeesService {
   private baseURL: string = environment2.baseUrl;
 
   private getAuthHeaders(): HttpHeaders{
-    const token = localStorage.getItem('authToken');
+    const token = sessionStorage.getItem('authToken');
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 

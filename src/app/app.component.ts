@@ -14,9 +14,9 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   title = 'y';
 
-  constructor(private authService: AuthenticationService){}
+  // constructor(private authService: AuthenticationService){}
 
   ngOnInit():void {
-    this.authService.getAuthHeaders();
+    // this.authService.getAuthHeaders();
   }
 }

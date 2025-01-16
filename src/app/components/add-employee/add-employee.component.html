@@ -1,4 +1,4 @@
-<div class="w-full h-20 bg-yellow-400 flex items-center">
+<!-- <div class="w-full h-20 bg-yellow-400 flex items-center">
     <div class="px-5" (click)="back()">
         <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
@@ -49,13 +49,6 @@
             </label>
         </div>
 
-        <div class="form-group">
-            <select id="department" formControlName="department" name="department" id="countries" class="w-4/5 md:w-3/6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              <option selected>Select a Department</option>
-              <option *ngFor="let department of departments" [value]="department">{{ department }}</option>
-            </select>
-          </div>
-
         <div class="form-group flex justfiy-center items-center">
             <label class="w-4/5 md:w-3/6 input input-bordered flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
@@ -88,4 +81,173 @@
             <button class="btn text-white bg-gray-800" type="submit">Save</button>
         </div>
     </form>
-</div>
+</div> -->
+
+
+
+<div class="w-full h-20 bg-yellow-400 flex items-center">
+    <div class="px-5" (click)="back()">
+      <svg
+        class="w-8 h-8 text-gray-800 dark:text-white"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m15 19-7-7 7-7"
+        />
+      </svg>
+    </div>
+  </div>
+  
+  <div class="px-4">
+    <div>
+      <h3 class="my-4 font-bold">Add New Employee</h3>
+    </div>
+  
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()" class="block justify-center space-y-4">
+      <div class="form-group">
+        <label class="w-4/5 md:w-3/6 input input-bordered flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="h-4 w-4 opacity-70"
+          >
+            <path
+              d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"
+            />
+            <path
+              d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"
+            />
+          </svg>
+          <input
+            class="form-control grow"
+            id="firstname"
+            formControlName="firstname"
+            name="firstname"
+            type="text"
+            placeholder="First Name"
+          />
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label class="w-4/5 md:w-3/6 input input-bordered flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="h-4 w-4 opacity-70"
+          >
+            <path
+              d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"
+            />
+            <path
+              d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"
+            />
+          </svg>
+          <input
+            class="form-control grow"
+            id="lastname"
+            formControlName="lastname"
+            name="lastname"
+            type="text"
+            placeholder="Last Name"
+          />
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label class="w-4/5 md:w-3/6 input input-bordered flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="h-4 w-4 opacity-70"
+          >
+            <path
+              d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"
+            />
+            <path
+              d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"
+            />
+          </svg>
+          <input
+            class="form-control grow"
+            id="employeeNumber"
+            formControlName="employeeNumber"
+            name="employeeNumber"
+            type="number"
+            placeholder="Employee Number"
+          />
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label class="w-4/5 md:w-3/6 input input-bordered flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="h-4 w-4 opacity-70"
+          >
+            <path
+              d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"
+            />
+            <path
+              d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"
+            />
+          </svg>
+          <input
+            class="form-control grow"
+            id="email"
+            formControlName="email"
+            name="email"
+            type="text"
+            placeholder="email"
+          />
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label class="w-4/5 md:w-3/6 input input-bordered flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="h-4 w-4 opacity-70"
+          >
+            <path
+              d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"
+            />
+            <path
+              d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"
+            />
+          </svg>
+          <input
+            class="form-control grow"
+            id="contacts"
+            formControlName="contacts"
+            name="contacts"
+            type="number"
+            placeholder="Contact Number"
+          />
+        </label>
+      </div>
+  
+      <!-- Repeat similar blocks for other inputs -->
+  
+      <div>
+        <button class="btn text-white bg-gray-800" type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+  

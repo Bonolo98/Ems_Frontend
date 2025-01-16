@@ -11,7 +11,7 @@ import { NgModule } from "@angular/core";
 import { UpdateEmployeeComponent } from "./components/update-employee/update-employee.component";
 
 export const routes: Routes = [
-    {path: '', redirectTo:'dashboard', pathMatch:'full'},
+    {path: '', redirectTo:'login', pathMatch:'full'},
     {path: 'register', component: RegisterComponent},
     {path: 'login', component: LoginComponent},
     {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},

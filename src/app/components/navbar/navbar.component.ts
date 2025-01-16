@@ -21,7 +21,6 @@ export class NavbarComponent {
     this.authService.getUserDetails().subscribe({
       next: (data) => {
         this.user = data;
-        console.log(data)
       },
       error: (error) => {
         console.error('Could not fetch user data', error)

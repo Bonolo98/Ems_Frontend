@@ -19,7 +19,7 @@ export class AuthenticationService {
   private isAuthenticated = false;
 
   getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('authToken');
+    const token = sessionStorage.getItem('authToken');
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
@@ -33,21 +33,21 @@ export class AuthenticationService {
   login(loginRequest: any): Observable<any> {
     return this.httpClient.post(`${this.baseURL}/login`, loginRequest,).pipe(
       tap((response: any) => {
-        localStorage.setItem('authToken', response.token);
-        this.isAuthenticated = true;
+        sessionStorage.setItem('authToken', response.token);
+        // this.isAuthenticated = true;
         return true;
       })
     );
   }
 
   isAuthenticatedUser(): boolean {
-    const token = localStorage.getItem('authToken');
+    const token = sessionStorage.getItem('authToken');
     return !!token;
   }
 
   logout() {
     console.log('Logout called, removing token...');
-    localStorage.removeItem('authToken');
+    sessionStorage.removeItem('authToken');
     this.isAuthenticated = false;
     this.router.navigate(['/login']);
   }

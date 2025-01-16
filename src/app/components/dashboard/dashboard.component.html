@@ -1,110 +1,255 @@
 <app-navbar></app-navbar>
 <div class="px-4">
-    <div class="flex space-x-7">
-        <div class="card bg-base-100 min-w-44  md:w-60 shadow-xl my-4">
-            <div class="card-body">
-              <h2 class="font-bold text-gray-700">Active Employees</h2>
-              <h2 class="text-gray-500 text-3xl font-bold">{{totalEmployees}}</h2>
-              <div class="card-actions justify-end">
-              </div>
-            </div>
-          </div>
+  <div class="flex items-center space-x-7">
+    <div class="card bg-base-100 min-w-32 md:w-52 md:h-24 shadow-xl my-4">
+      <div class="card-body">
+        <h2 class="font-bold text-gray-700">Active Employees</h2>
+        <h2 class="text-gray-500 font-bold">{{ totalEmployees }}</h2>
+        <div class="card-actions justify-end"></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="my-2 btn text-white bg-gray-800" (click)="addEmployees()">
+    New
+  </button>
+  <div class="relative overflow-x-auto sm:rounded-lg" id="pdfTable" #pdfTable>
+    <!-- <label
+      class="input input-bordered max-w-5/6 md:w-2/6 my-6 flex items-center gap-2"
+    >
+      <input
+        [(ngModel)]="query"
+        type="text"
+        class="grow"
+        placeholder="Firstname, Lastname"
+      />
+      <button (click)="Search()">Search</button>
+    </label> -->
 
 
-       
+    <div class="">
+      <mat-form-field  class="w-full md:w-1/3 my-4">
+        <!-- <mat-label>Search Employees</mat-label> -->
+        <input
+          matInput
+          (keyup)="Search($event)"
+          placeholder="Search by name, department, email, etc."
+          class="border-2 rounded-lg"
+        />
+      </mat-form-field>
+    </div>
     
-          <!-- <div class="card bg-base-100 min-w-44 md:w-96 shadow-xl my-4">
-            <div class="card-body">
-              <h2 class="card-title">All Employees</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div class="card-actions justify-end">
-                <button class="btn btn-primary">Buy Now</button>
-              </div>
-            </div>
-          </div> -->
-    </div>
 
-    <button class="my-4 btn text-white bg-gray-800" (click)="addEmployees()">New</button>
+
+
+    <!-- <table
+      class="md:w-full shadow-md text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    >
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3">Employee Number</th>
+          <th scope="col" class="px-6 py-3">Firstname</th>
+          <th scope="col" class="px-6 py-3">Lastname</th>
+          <th scope="col" class="px-6 py-3">Department</th>
+          <th scope="col" class="px-6 py-3">Email</th>
+          <th scope="col" class="px-6 py-3">Contacts</th>
+          <th scope="col" class="px-6 py-3"></th>
+          <th scope="col" class="px-6 py-3"></th>
+          <th scope="col" class="px-6 py-3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+          *ngFor="let employee of employees"
+          (click)="getEmployeeById(employee.id)"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            {{ employee.employeeNumber }}
+          </th>
+          <td class="px-6">
+            {{ employee.firstname }}
+          </td>
+          <td class="px-6">
+            {{ employee.lastname }}
+          </td>
+          <td class="px-6">
+            {{ employee.department }}
+          </td>
+          <td class="px-6">
+            {{ employee.email }}
+          </td>
+          <td class="px-6">
+            {{ employee.contacts }}
+          </td>
+          <td class="px-6">
+            <button
+              class="my-4 btn text-white bg-yellow-400"
+              (click)="updateEmployeeById(employee.id)"
+            >
+              Update
+            </button>
+          </td>
+
+          <td class="px-6">
+            <a
+              href="#"
+              class="font-medium text-red-600 dark:text-blue-500 hover:underline"
+              (click)="deleteByEmployeeId(employee.id)"
+              >Delete</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table> -->
+
+
+
     <div class="relative overflow-x-auto sm:rounded-lg">
-
-
-        <label class="input input-bordered max-w-5/6 md:w-2/6 my-6 flex items-center gap-2">
-            <input [(ngModel)]="query"  type="text" class="grow" placeholder="Firstname, Lastname" />
-            <button (click)="Search()">Search</button>
-            <!-- <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              class="h-4 w-4 opacity-70">
-              <path
-                fill-rule="evenodd"
-                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                clip-rule="evenodd" />
-            </svg> -->
-          </label>
-
-        <table class="md:w-full shadow-md text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        Employee Number
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Firstname
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Lastname
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Department
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Email
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Contacts
-                    </th>
-                    <th scope="col" class="px-6 py-3"> 
-                    </th>
-                    <th scope="col" class="px-6 py-3">   
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
-                    *ngFor="let employee of employees" (click)="getEmployeeById(employee.id)">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{employee.employeeNumber}}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{employee.firstname}}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{employee.lastname}}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{employee.department}}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{employee.email}}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{employee.contacts}}
-                    </td>
-                    <td class="px-6 py-4">
-                        <button class="my-4 btn text-white bg-yellow-400" (click)="updateEmployeeById(employee.id)">Update</button>
-                    </td>
-                    <!-- <td class="px-6 py-4">
-                        <button class="my-4 btn text-white bg-gray-800" (click)="getEmployeeById(employee.id)">View</button>
-                    </td> -->
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline" (click)="deleteByEmployeeId(employee.id)">Delete</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+      <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <!-- Employee Number Column -->
+        <ng-container matColumnDef="employeeNumber">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Employee Number
+          </mat-header-cell>
+          <mat-cell *matCellDef="let employee">
+            {{ employee.employeeNumber }}
+          </mat-cell>
+        </ng-container>
+    
+        <!-- Firstname Column -->
+        <ng-container matColumnDef="firstname">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Firstname
+          </mat-header-cell>
+          <mat-cell *matCellDef="let employee">
+            {{ employee.firstname }}
+          </mat-cell>
+        </ng-container>
+    
+        <!-- Lastname Column -->
+        <ng-container matColumnDef="lastname">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Lastname
+          </mat-header-cell>
+          <mat-cell *matCellDef="let employee">
+            {{ employee.lastname }}
+          </mat-cell>
+        </ng-container>
+    
+        <!-- Department Column -->
+        <ng-container matColumnDef="department">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Department
+          </mat-header-cell>
+          <mat-cell *matCellDef="let employee">
+            {{ employee.department }}
+          </mat-cell>
+        </ng-container>
+    
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Email
+          </mat-header-cell>
+          <mat-cell *matCellDef="let employee">
+            {{ employee.email }}
+          </mat-cell>
+        </ng-container>
+    
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+          <mat-cell *matCellDef="let employee">
+            <button mat-button color="primary" (click)="updateEmployeeById(employee.id)">Update</button>
+            <button mat-button color="warn" (click)="deleteByEmployeeId(employee.id)">Delete</button>
+          </mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    
+      <mat-paginator
+        [length]="totalEmployees"
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10, 20]"
+        aria-label="Select page"
+      ></mat-paginator>
     </div>
-
+  </div>
 </div>
+
+
+
+<!-- <div class="relative overflow-x-auto sm:rounded-lg">
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="employeeNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Employee Number
+      </mat-header-cell>
+      <mat-cell *matCellDef="let employee">
+        {{ employee.employeeNumber }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="firstname">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Firstname
+      </mat-header-cell>
+      <mat-cell *matCellDef="let employee">
+        {{ employee.firstname }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastname">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Lastname
+      </mat-header-cell>
+      <mat-cell *matCellDef="let employee">
+        {{ employee.lastname }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="department">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Department
+      </mat-header-cell>
+      <mat-cell *matCellDef="let employee">
+        {{ employee.department }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Email
+      </mat-header-cell>
+      <mat-cell *matCellDef="let employee">
+        {{ employee.email }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let employee">
+        <button mat-button color="primary" (click)="updateEmployeeById(employee.id)">Update</button>
+        <button mat-button color="warn" (click)="deleteByEmployeeId(employee.id)">Delete</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    [length]="totalEmployees"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 20]"
+    aria-label="Select page"
+  ></mat-paginator>
+</div> -->
