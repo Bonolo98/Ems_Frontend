@@ -1,0 +1,17 @@
+.font-weight {
+    font-weight: bold;
+}
+
+
+.updateButton {
+    color: white;
+    background: #FFDB1E;
+    font-weight: 600;
+   
+}
+
+.deleteButton {
+    background: #F71818;
+    font-weight: 600;
+    color: white;
+}
